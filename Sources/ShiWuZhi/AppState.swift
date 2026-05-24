@@ -4,6 +4,7 @@ import SwiftUI
 
 enum SidebarItem: Hashable {
     case allFoods
+    case todayFoods
     case spending
     case settings
     case savedView(Int64)

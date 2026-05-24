@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SpendingView: View {
     @Environment(AppState.self) private var state
-    @State private var period: String = "month"
+    @State private var period: String = "day"
     @State private var data: [SpendPeriod] = []
     @State private var expandedDay: String? = nil
     @State private var dayFoods: [Food] = []
@@ -11,7 +11,7 @@ struct SpendingView: View {
         VStack(spacing: 0) {
             // Segment
             HStack(spacing: 0) {
-                ForEach([("month","按月"),("week","按周"),("day","按日")], id: \.0) { p, label in
+                ForEach([("day","按日"),("week","按周"),("month","按月")], id: \.0) { p, label in
                     Button(label) { period = p; load(); expandedDay = nil }
                         .buttonStyle(.borderless)
                         .padding(.horizontal, 16).padding(.vertical, 7)

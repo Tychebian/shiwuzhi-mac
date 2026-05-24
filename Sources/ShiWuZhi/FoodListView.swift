@@ -151,6 +151,7 @@ struct FoodRowHeader: View {
         case "rating": return 48
         case "buy_again": return 68
         case "price": return 72
+        case "calories": return 72
         case "purchase_date": return 90
         default: return 80
         }
@@ -203,6 +204,12 @@ struct FoodRow: View {
             } else {
                 Text("—").foregroundStyle(.secondary)
             }
+        case "calories":
+            if let cal = food.calories {
+                Text("\(cal) kcal").font(.subheadline).foregroundStyle(.secondary)
+            } else {
+                Text("—").foregroundStyle(.secondary)
+            }
         case "purchase_date":
             Text(food.purchaseDate.isEmpty ? "—" : food.purchaseDate).font(.subheadline).foregroundStyle(.secondary)
         case "note":
@@ -217,6 +224,7 @@ struct FoodRow: View {
         case "rating": return 48
         case "buy_again": return 68
         case "price": return 72
+        case "calories": return 72
         case "purchase_date": return 90
         default: return 80
         }

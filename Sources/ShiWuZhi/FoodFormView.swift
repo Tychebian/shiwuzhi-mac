@@ -74,7 +74,7 @@ struct FoodFormView: View {
                         }
                     }
 
-                    // Date + Price
+                    // Date + Price + Calories
                     HStack(spacing: 12) {
                         field("购入日期") {
                             TextField("2026-01-01", text: $food.purchaseDate)
@@ -82,6 +82,10 @@ struct FoodFormView: View {
                         }
                         field("购入价格（元）") {
                             TextField("9.90", value: $food.price, format: .number)
+                                .textFieldStyle(.roundedBorder)
+                        }
+                        field("卡路里（kcal）") {
+                            TextField("250", value: $food.calories, format: .number)
                                 .textFieldStyle(.roundedBorder)
                         }
                     }

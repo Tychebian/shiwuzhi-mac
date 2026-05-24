@@ -98,8 +98,8 @@ extension AppState {
 struct FilterTag: View {
     let condition: FilterCondition
 
-    private static let fieldLabels = ["rating":"评分","price":"价格","packaging":"包装",
-                                      "category":"分类","buy_again":"回购"]
+    private static let fieldLabels = ["rating":"评分","price":"价格","calories":"卡路里",
+                                      "packaging":"包装","category":"分类","buy_again":"回购"]
     private static let opLabels    = ["lt":"<","lte":"≤","gt":">","gte":"≥","eq":"="]
 
     var body: some View {
@@ -107,8 +107,9 @@ struct FilterTag: View {
         let ol = Self.opLabels[condition.op] ?? condition.op
         let vl = condition.field == "buy_again"
             ? (condition.value == "1" ? "会再购" : "不再购")
-            : condition.field == "rating" ? "\(condition.value)分"
-            : condition.field == "price"  ? "¥\(condition.value)"
+            : condition.field == "rating"   ? "\(condition.value)分"
+            : condition.field == "price"    ? "¥\(condition.value)"
+            : condition.field == "calories" ? "\(condition.value)kcal"
             : condition.value
 
         Text("\(fl) \(ol) \(vl)")
@@ -245,8 +246,8 @@ struct FilterRow: View {
 
     private let fields: [(key: String, label: String)] = [
         ("rating",    "喜好评分"), ("price",    "购入价格"),
-        ("packaging", "包装形式"), ("category", "分类"),
-        ("buy_again", "是否再购"),
+        ("calories",  "卡路里"),   ("packaging", "包装形式"),
+        ("category",  "分类"),     ("buy_again", "是否再购"),
     ]
     private let numericOps = [("lt","<"),("lte","≤"),("gt",">"),("gte","≥"),("eq","=")]
 
@@ -258,12 +259,12 @@ struct FilterRow: View {
             .frame(width: 90)
             .onChange(of: condition.field) { _, _ in condition.value = "" }
 
-            if condition.field == "rating" || condition.field == "price" {
+            if condition.field == "rating" || condition.field == "price" || condition.field == "calories" {
                 Picker("", selection: $condition.op) {
                     ForEach(numericOps, id: \.0) { Text($1).tag($0) }
                 }
                 .frame(width: 52)
-                TextField(condition.field == "rating" ? "60" : "30", text: $condition.value)
+                TextField(condition.field == "rating" ? "60" : condition.field == "calories" ? "250" : "30", text: $condition.value)
                     .textFieldStyle(.roundedBorder).frame(width: 70)
             } else if condition.field == "buy_again" {
                 Picker("", selection: $condition.value) {

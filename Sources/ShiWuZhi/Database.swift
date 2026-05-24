@@ -33,6 +33,7 @@ final class Database {
             buy_again     INTEGER DEFAULT 1,
             purchase_date TEXT DEFAULT '',
             price         REAL,
+            calories      INTEGER,
             note          TEXT DEFAULT '',
             created_at    TEXT DEFAULT (datetime('now','localtime')),
             updated_at    TEXT DEFAULT (datetime('now','localtime'))
@@ -51,6 +52,7 @@ final class Database {
         exec("ALTER TABLE foods ADD COLUMN brand TEXT DEFAULT ''")
         exec("ALTER TABLE foods ADD COLUMN purchase_date TEXT DEFAULT ''")
         exec("ALTER TABLE foods ADD COLUMN price REAL")
+        exec("ALTER TABLE foods ADD COLUMN calories INTEGER")
         exec("ALTER TABLE views ADD COLUMN columns TEXT NOT NULL DEFAULT '[\"name\",\"buy_again\",\"price\",\"note\"]'")
     }
 
@@ -79,6 +81,7 @@ final class Database {
             buyAgain:     sqlite3_column_int(stmt, 7) != 0,
             purchaseDate: string(stmt, 8),
             price:        sqlite3_column_type(stmt, 9) == SQLITE_NULL ? nil : sqlite3_column_double(stmt, 9),
+            calories:     sqlite3_column_type(stmt, 13) == SQLITE_NULL ? nil : Int(sqlite3_column_int(stmt, 13)),
             note:         string(stmt, 10),
             createdAt:    string(stmt, 11),
             updatedAt:    string(stmt, 12)
@@ -103,7 +106,7 @@ final class Database {
         // We'll reorder columns to match foodFromStmt
         base = """
         SELECT id,name,category,brand,source,packaging,
-               rating,buy_again,purchase_date,price,note,created_at,updated_at
+               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories
         FROM foods WHERE 1=1
         """
         var params: [String] = []
@@ -153,8 +156,8 @@ final class Database {
             return "评分 \(f.rating) 已被「\(clash)」占用"
         }
         let sql = """
-        INSERT INTO foods (name,category,brand,source,packaging,rating,buy_again,purchase_date,price,note)
-        VALUES (?,?,?,?,?,?,?,?,?,?)
+        INSERT INTO foods (name,category,brand,source,packaging,rating,buy_again,purchase_date,price,note,calories)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?)
         """
         guard let stmt = prepare(sql) else { return "数据库错误" }
         defer { sqlite3_finalize(stmt) }
@@ -168,14 +171,14 @@ final class Database {
         }
         let sql = """
         UPDATE foods SET name=?,category=?,brand=?,source=?,packaging=?,
-            rating=?,buy_again=?,purchase_date=?,price=?,note=?,
+            rating=?,buy_again=?,purchase_date=?,price=?,note=?,calories=?,
             updated_at=datetime('now','localtime')
         WHERE id=?
         """
         guard let stmt = prepare(sql) else { return "数据库错误" }
         defer { sqlite3_finalize(stmt) }
         bind(stmt, f)
-        sqlite3_bind_int64(stmt, 11, f.id)
+        sqlite3_bind_int64(stmt, 12, f.id)
         return sqlite3_step(stmt) == SQLITE_DONE ? nil : "更新失败"
     }
 
@@ -201,6 +204,11 @@ final class Database {
             sqlite3_bind_null(stmt, 9)
         }
         sqlite3_bind_text(stmt, 10, (f.note as NSString).utf8String, -1, nil)
+        if let cal = f.calories {
+            sqlite3_bind_int(stmt, 11, Int32(cal))
+        } else {
+            sqlite3_bind_null(stmt, 11)
+        }
     }
 
     // MARK: - Rating uniqueness
@@ -353,7 +361,7 @@ extension Database {
     func fetchViewResultsSafe(view: FoodView, sort: SortState, dedup: Bool) -> [Food] {
         var base = """
         SELECT id,name,category,brand,source,packaging,
-               rating,buy_again,purchase_date,price,note,created_at,updated_at
+               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories
         FROM foods WHERE 1=1
         """
         typealias Binding = (index: Int32, isNumeric: Bool, value: String)
@@ -363,7 +371,7 @@ extension Database {
         for f in view.filters {
             let isNumeric = (f.field == "rating" || f.field == "price")
             switch f.field {
-            case "rating", "price":
+            case "rating", "price", "calories":
                 switch f.op {
                 case "lt":  base += " AND \(f.field)<?";  bindings.append((bindIndex, true, f.value));  bindIndex += 1
                 case "lte": base += " AND \(f.field)<=?"; bindings.append((bindIndex, true, f.value));  bindIndex += 1

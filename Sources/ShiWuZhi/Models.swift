@@ -13,6 +13,7 @@ struct Food: Identifiable, Hashable, Sendable {
     var buyAgain: Bool = true
     var purchaseDate: String = ""
     var price: Double? = nil
+    var calories: Int? = nil
     var note: String = ""
     var createdAt: String = ""
     var updatedAt: String = ""
@@ -49,6 +50,7 @@ struct ColumnMeta: Hashable, Sendable {
         .init(key: "rating",        label: "评分"),
         .init(key: "buy_again",     label: "回购"),
         .init(key: "price",         label: "价格"),
+        .init(key: "calories",      label: "卡路里"),
         .init(key: "purchase_date", label: "购入日期"),
         .init(key: "note",          label: "备注"),
     ]
@@ -67,7 +69,7 @@ struct SortState: Hashable, Sendable {
     var sqlClause: String { "\(safeField) \(ascending ? "ASC" : "DESC")" }
 
     private var safeField: String {
-        let allowed = ["updated_at","created_at","name","rating","price","purchase_date"]
+        let allowed = ["updated_at","created_at","name","rating","price","calories","purchase_date"]
         return allowed.contains(field) ? field : "updated_at"
     }
 
@@ -76,6 +78,7 @@ struct SortState: Hashable, Sendable {
         ("name",          "名称"),
         ("rating",        "评分"),
         ("price",         "价格"),
+        ("calories",      "卡路里"),
         ("purchase_date", "购入日期"),
         ("created_at",    "添加时间"),
     ]
