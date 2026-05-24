@@ -151,7 +151,8 @@ struct FoodRowHeader: View {
         case "rating": return 48
         case "buy_again": return 68
         case "price": return 72
-        case "calories": return 72
+        case "calories":  return 72
+        case "meal_type": return 60
         case "purchase_date": return 90
         default: return 80
         }
@@ -212,6 +213,8 @@ struct FoodRow: View {
             }
         case "purchase_date":
             Text(food.purchaseDate.isEmpty ? "—" : food.purchaseDate).font(.subheadline).foregroundStyle(.secondary)
+        case "meal_type":
+            Text(food.mealType.isEmpty ? "—" : food.mealType).font(.subheadline).foregroundStyle(.secondary)
         case "note":
             Text(food.note.isEmpty ? "" : food.note).font(.subheadline).foregroundStyle(.secondary).lineLimit(1)
         default:
@@ -224,7 +227,8 @@ struct FoodRow: View {
         case "rating": return 48
         case "buy_again": return 68
         case "price": return 72
-        case "calories": return 72
+        case "calories":  return 72
+        case "meal_type": return 60
         case "purchase_date": return 90
         default: return 80
         }

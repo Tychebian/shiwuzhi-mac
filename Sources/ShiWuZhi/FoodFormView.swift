@@ -95,6 +95,22 @@ struct FoodFormView: View {
                         }
                     }
 
+                    // Meal type
+                    field("餐次") {
+                        HStack(spacing: 6) {
+                            ForEach(["早餐", "午餐", "晚餐", "零食", "夜宵"], id: \.self) { meal in
+                                Button(meal) { food.mealType = food.mealType == meal ? "" : meal }
+                                    .buttonStyle(.borderless)
+                                    .font(.callout)
+                                    .padding(.horizontal, 10).padding(.vertical, 5)
+                                    .background(food.mealType == meal ? Color.orange : Color.primary.opacity(0.07))
+                                    .foregroundStyle(food.mealType == meal ? .white : .primary)
+                                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                            }
+                            Spacer()
+                        }
+                    }
+
                     // Rating
                     field("喜好评分：\(food.rating) / 100") {
                         VStack(alignment: .leading, spacing: 4) {

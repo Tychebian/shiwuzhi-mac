@@ -14,6 +14,7 @@ struct Food: Identifiable, Hashable, Sendable {
     var purchaseDate: String = ""
     var price: Double? = nil
     var calories: Int? = nil
+    var mealType: String = ""
     var note: String = ""
     var createdAt: String = ""
     var updatedAt: String = ""
@@ -51,6 +52,7 @@ struct ColumnMeta: Hashable, Sendable {
         .init(key: "buy_again",     label: "回购"),
         .init(key: "price",         label: "价格"),
         .init(key: "calories",      label: "卡路里"),
+        .init(key: "meal_type",     label: "餐次"),
         .init(key: "purchase_date", label: "购入日期"),
         .init(key: "note",          label: "备注"),
     ]

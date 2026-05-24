@@ -34,6 +34,7 @@ final class Database {
             purchase_date TEXT DEFAULT '',
             price         REAL,
             calories      INTEGER,
+            meal_type     TEXT DEFAULT '',
             note          TEXT DEFAULT '',
             created_at    TEXT DEFAULT (datetime('now','localtime')),
             updated_at    TEXT DEFAULT (datetime('now','localtime'))
@@ -53,6 +54,7 @@ final class Database {
         exec("ALTER TABLE foods ADD COLUMN purchase_date TEXT DEFAULT ''")
         exec("ALTER TABLE foods ADD COLUMN price REAL")
         exec("ALTER TABLE foods ADD COLUMN calories INTEGER")
+        exec("ALTER TABLE foods ADD COLUMN meal_type TEXT DEFAULT ''")
         exec("ALTER TABLE views ADD COLUMN columns TEXT NOT NULL DEFAULT '[\"name\",\"buy_again\",\"price\",\"note\"]'")
     }
 
@@ -82,6 +84,7 @@ final class Database {
             purchaseDate: string(stmt, 8),
             price:        sqlite3_column_type(stmt, 9) == SQLITE_NULL ? nil : sqlite3_column_double(stmt, 9),
             calories:     sqlite3_column_type(stmt, 13) == SQLITE_NULL ? nil : Int(sqlite3_column_int(stmt, 13)),
+            mealType:     string(stmt, 14),
             note:         string(stmt, 10),
             createdAt:    string(stmt, 11),
             updatedAt:    string(stmt, 12)
@@ -106,7 +109,7 @@ final class Database {
         // We'll reorder columns to match foodFromStmt
         base = """
         SELECT id,name,category,brand,source,packaging,
-               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories
+               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories,meal_type
         FROM foods WHERE 1=1
         """
         var params: [String] = []
@@ -156,8 +159,8 @@ final class Database {
             return "评分 \(f.rating) 已被「\(clash)」占用"
         }
         let sql = """
-        INSERT INTO foods (name,category,brand,source,packaging,rating,buy_again,purchase_date,price,note,calories)
-        VALUES (?,?,?,?,?,?,?,?,?,?,?)
+        INSERT INTO foods (name,category,brand,source,packaging,rating,buy_again,purchase_date,price,note,calories,meal_type)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
         """
         guard let stmt = prepare(sql) else { return "数据库错误" }
         defer { sqlite3_finalize(stmt) }
@@ -171,14 +174,14 @@ final class Database {
         }
         let sql = """
         UPDATE foods SET name=?,category=?,brand=?,source=?,packaging=?,
-            rating=?,buy_again=?,purchase_date=?,price=?,note=?,calories=?,
+            rating=?,buy_again=?,purchase_date=?,price=?,note=?,calories=?,meal_type=?,
             updated_at=datetime('now','localtime')
         WHERE id=?
         """
         guard let stmt = prepare(sql) else { return "数据库错误" }
         defer { sqlite3_finalize(stmt) }
         bind(stmt, f)
-        sqlite3_bind_int64(stmt, 12, f.id)
+        sqlite3_bind_int64(stmt, 13, f.id)
         return sqlite3_step(stmt) == SQLITE_DONE ? nil : "更新失败"
     }
 
@@ -209,6 +212,7 @@ final class Database {
         } else {
             sqlite3_bind_null(stmt, 11)
         }
+        sqlite3_bind_text(stmt, 12, (f.mealType as NSString).utf8String, -1, nil)
     }
 
     // MARK: - Rating uniqueness
@@ -361,7 +365,7 @@ extension Database {
     func fetchViewResultsSafe(view: FoodView, sort: SortState, dedup: Bool) -> [Food] {
         var base = """
         SELECT id,name,category,brand,source,packaging,
-               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories
+               rating,buy_again,purchase_date,price,note,created_at,updated_at,calories,meal_type
         FROM foods WHERE 1=1
         """
         typealias Binding = (index: Int32, isNumeric: Bool, value: String)

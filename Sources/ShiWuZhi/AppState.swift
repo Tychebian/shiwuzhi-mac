@@ -136,7 +136,7 @@ final class AppState {
     }
 
     func foodsForDate(_ date: String) -> [Food] {
-        Database.shared.fetchFoods(sort: SortState(field: "price", ascending: false), date: date)
+        Database.shared.fetchFoods(sort: SortState(field: "created_at", ascending: true), date: date)
     }
 
     // MARK: - Rating helpers
