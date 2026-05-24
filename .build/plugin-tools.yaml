@@ -1,0 +1,81 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "ShiWuZhi-arm64-apple-macosx26.0-debug.exe": ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe>"]
+  "ShiWuZhi-arm64-apple-macosx26.0-debug.module": ["<ShiWuZhi-arm64-apple-macosx26.0-debug.module>"]
+  "main": ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe>","<ShiWuZhi-arm64-apple-macosx26.0-debug.module>"]
+  "test": ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe>","<ShiWuZhi-arm64-apple-macosx26.0-debug.module>"]
+default: "main"
+nodes:
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+  "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi":
+    is-mutated: true
+commands:
+  "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi-entitlement.plist":
+    tool: write-auxiliary-file
+    inputs: ["<entitlement-plist>","<com.apple.security.get-task-allow>"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi-entitlement.plist"]
+    description: "Write auxiliary file /Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi-entitlement.plist"
+
+  "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/sources":
+    tool: write-auxiliary-file
+    inputs: ["<sources-file-list>","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/AppState.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ContentView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Database.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodFormView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodListView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Models.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SavedViewDetailView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SettingsView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ShiWuZhiApp.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SpendingView.swift"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/sources"]
+    description: "Write auxiliary file /Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/sources"
+
+  "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.product/Objects.LinkFileList":
+    tool: write-auxiliary-file
+    inputs: ["<link-file-list>","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swift.o"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.product/Objects.LinkFileList"]
+    description: "Write auxiliary file /Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.product/Objects.LinkFileList"
+
+  "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt":
+    tool: write-auxiliary-file
+    inputs: ["<swift-get-version>","/Library/Developer/CommandLineTools/usr/bin/swiftc"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"]
+    always-out-of-date: "true"
+    description: "Write auxiliary file /Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt"
+
+  "<ShiWuZhi-arm64-apple-macosx26.0-debug.exe>":
+    tool: phony
+    inputs: ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe-CodeSigning>"]
+    outputs: ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe>"]
+
+  "<ShiWuZhi-arm64-apple-macosx26.0-debug.module>":
+    tool: phony
+    inputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/Modules/ShiWuZhi.swiftmodule"]
+    outputs: ["<ShiWuZhi-arm64-apple-macosx26.0-debug.module>"]
+
+  "C.ShiWuZhi-arm64-apple-macosx26.0-debug.exe":
+    tool: shell
+    inputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.product/Objects.LinkFileList"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi"]
+    description: "Linking ./.build/arm64-apple-macosx/debug/ShiWuZhi"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-L","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug","-o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi","-module-name","ShiWuZhi","-Xlinker","-no_warn_duplicate_libraries","-emit-executable","-Xlinker","-alias","-Xlinker","_ShiWuZhi_main","-Xlinker","_main","-Xlinker","-rpath","-Xlinker","@loader_path","@/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.product/Objects.LinkFileList","-Xlinker","-rpath","-Xlinker","/Library/Developer/CommandLineTools/usr/lib/swift-6.2/macosx","-target","arm64-apple-macosx14.0","-lsqlite3","-Xlinker","-add_ast_path","-Xlinker","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/Modules/ShiWuZhi.swiftmodule","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g"]
+
+  "C.ShiWuZhi-arm64-apple-macosx26.0-debug.exe-entitlements":
+    tool: shell
+    inputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi-entitlement.plist"]
+    outputs: ["<ShiWuZhi-arm64-apple-macosx26.0-debug.exe-CodeSigning>"]
+    description: "Applying debug entitlements to ./.build/arm64-apple-macosx/debug/ShiWuZhi"
+    args: ["codesign","--force","--sign","-","--entitlements","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi-entitlement.plist","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi"]
+
+  "C.ShiWuZhi-arm64-apple-macosx26.0-debug.module":
+    tool: shell
+    inputs: ["/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/AppState.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ContentView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Database.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodFormView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodListView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Models.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SavedViewDetailView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SettingsView.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ShiWuZhiApp.swift","/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SpendingView.swift","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/swift-version--1AB21518FC5DEDBE.txt","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/sources"]
+    outputs: ["/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swift.o","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/Modules/ShiWuZhi.swiftmodule"]
+    description: "Compiling Swift Module 'ShiWuZhi' (10 sources)"
+    args: ["/Library/Developer/CommandLineTools/usr/bin/swiftc","-module-name","ShiWuZhi","-emit-dependencies","-emit-module","-emit-module-path","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/Modules/ShiWuZhi.swiftmodule","-output-file-map","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/output-file-map.json","-incremental","-c","@/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/sources","-I","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/Modules","-target","arm64-apple-macosx14.0","-incremental","-enable-batch-mode","-serialize-diagnostics","-index-store-path","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/index/store","-Onone","-enable-testing","-j10","-DSWIFT_PACKAGE","-DDEBUG","-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE","-module-cache-path","/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ModuleCache","-parseable-output","-Xfrontend","-entry-point-function-name","-Xfrontend","ShiWuZhi_main","-swift-version","6","-I","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-L","/Library/Developer/CommandLineTools/Library/Developer/Frameworks","-plugin-path","/Library/Developer/CommandLineTools/usr/lib/swift/host/plugins/testing","-sdk","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-g","-Xcc","-isysroot","-Xcc","/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk","-Xcc","-fPIC","-Xcc","-g","-package-name","shiwuzhi_mac"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/","/Users/jingran/shiwuzhi-mac/Package.swift","/Users/jingran/shiwuzhi-mac/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

@@ -1,0 +1,75 @@
+{
+  "": {
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/master.swiftdeps"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/AppState.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/AppState.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ContentView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ContentView.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Database.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Database.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodFormView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodFormView.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/FoodListView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/FoodListView.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/Models.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/Models.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SavedViewDetailView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SavedViewDetailView.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SettingsView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SettingsView.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/ShiWuZhiApp.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/ShiWuZhiApp.dia"
+  },
+  "/Users/jingran/shiwuzhi-mac/Sources/ShiWuZhi/SpendingView.swift": {
+    "dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.d",
+    "object": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swift.o",
+    "swiftmodule": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView~partial.swiftmodule",
+    "swift-dependencies": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.swiftdeps",
+    "diagnostics": "/Users/jingran/shiwuzhi-mac/.build/arm64-apple-macosx/debug/ShiWuZhi.build/SpendingView.dia"
+  }
+}
