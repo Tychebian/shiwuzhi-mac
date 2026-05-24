@@ -14,7 +14,12 @@ struct FoodFormView: View {
     private let presetPackaging  = ["♻️ 环保", "🟡 比较环保（纸杯+涂层）", "🟠 不太环保（塑料包装）", "🔴 很不环保（大量塑料包装）"]
 
     init(food: Food, onSave: @escaping (Food) -> Void, onDelete: (() -> Void)? = nil) {
-        _food = State(initialValue: food)
+        var f = food
+        if f.purchaseDate.isEmpty {
+            let fmt = DateFormatter(); fmt.dateFormat = "yyyy-MM-dd"
+            f.purchaseDate = fmt.string(from: Date())
+        }
+        _food = State(initialValue: f)
         self.isEditing = food.id != 0
         self.onSave    = onSave
         self.onDelete  = onDelete
@@ -77,8 +82,8 @@ struct FoodFormView: View {
                     // Date + Price + Calories
                     HStack(spacing: 12) {
                         field("购入日期") {
-                            TextField("2026-01-01", text: $food.purchaseDate)
-                                .textFieldStyle(.roundedBorder)
+                            DatePicker("", selection: purchaseDateBinding, displayedComponents: .date)
+                                .labelsHidden()
                         }
                         field("购入价格（元）") {
                             TextField("9.90", value: $food.price, format: .number)
@@ -173,6 +178,14 @@ struct FoodFormView: View {
             Text("请选择").tag("")
             ForEach(allCats, id: \.self) { Text($0).tag($0) }
         }
+    }
+
+    private var purchaseDateBinding: Binding<Date> {
+        let fmt = DateFormatter(); fmt.dateFormat = "yyyy-MM-dd"
+        return Binding(
+            get: { fmt.date(from: food.purchaseDate) ?? Date() },
+            set: { food.purchaseDate = fmt.string(from: $0) }
+        )
     }
 
     private func checkRatingConflict() {
